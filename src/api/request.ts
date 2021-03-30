@@ -33,6 +33,7 @@ axios.interceptors.request.use(
 //     return Promise.reject(error);
 // });
 
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 // 異常處理
 axios.interceptors.response.use(
     response => response,
