@@ -31,7 +31,8 @@ const routes: Array<RouteConfig> = [
                 name: 'Home',
                 component: () => import('@/views/Navs/Home/Home.vue'),
                 meta: {
-                    titleKey: '首頁'
+                    titleKey: '首頁',
+                    upStair: 'Home'
                 }
             }
         ]
@@ -62,7 +63,18 @@ const routes: Array<RouteConfig> = [
                 name: 'Gallery',
                 meta: {
                     titleKey: 'Gallery',
-                    noCache: true
+                    noCache: true,
+                    upStair: 'Gallery'
+                }
+            },
+            {
+                path: 'Album',
+                component: () => import('@/views/Navs/Gallery/Album.vue'),
+                name: 'Album',
+                meta: {
+                    titleKey: 'Album',
+                    noCache: true,
+                    upStair: 'Gallery'
                 }
             }
         ]

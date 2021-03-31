@@ -1,4 +1,4 @@
-import request from '@/api/request'; // 引入封裝好的axios
+import requestFlickr from '@/api/requestFlickr'; // 引入封裝好的axios
 
 const param = {
     user_id: '192557662@N05',
@@ -7,7 +7,7 @@ const param = {
     nojsoncallback: 1
 };
 // 取相簿
-export const getAlbum = (paramCell: any) => request({
+export const getAlbum = (paramCell: any) => requestFlickr({
     method: 'get',
     params: {
         method: 'flickr.photosets.getList',
@@ -17,7 +17,7 @@ export const getAlbum = (paramCell: any) => request({
 });
 
 // 依相簿取照片
-export const getAlbumPhotoList = (paramCell: any) => request({
+export const getAlbumPhotoList = (paramCell: any) => requestFlickr({
     method: 'get',
     params: {
         method: 'flickr.photosets.getPhotos',
@@ -27,7 +27,7 @@ export const getAlbumPhotoList = (paramCell: any) => request({
 });
 
 // 取全部照片
-export const getAllPhoto = (paramCell: any) => request({
+export const getAllPhoto = (paramCell: any) => requestFlickr({
     method: 'get',
     params: {
         method: 'flickr.photos.search',
@@ -37,10 +37,20 @@ export const getAllPhoto = (paramCell: any) => request({
 });
 
 // 取照片資訊
-export const getAllContext = (paramCell: any) => request({
+export const getAllContext = (paramCell: any) => requestFlickr({
     method: 'get',
     params: {
         method: 'flickr.photos.getAllContexts',
+        ...param,
+        ...paramCell
+    }
+});
+
+// 取得影片資訊 51085366482
+export const getStream = (paramCell: any) => requestFlickr({
+    method: 'get',
+    params: {
+        method: 'flickr.photos.getInfo',
         ...param,
         ...paramCell
     }

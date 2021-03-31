@@ -1,11 +1,12 @@
 <template lang="pug">
     .app-wrapper
         Navbar
-        router-view
+        transition(name="fade")
+            router-view
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 
 @Component({
@@ -16,7 +17,11 @@ import Navbar from '@/components/Navbar.vue';
     }
 })
 export default class Layout extends Vue {
-
+    protected trans = false;
+    @Watch('$route')
+    protected routeChange() {
+        this.trans = !this.trans;
+    }
 }
 </script>
 
@@ -31,15 +36,17 @@ export default class Layout extends Vue {
         position: fixed;
         top: 0;
     }
-}
-
-.drawer-bg {
-    background: #000;
-    opacity: 0.3;
-    width: 100%;
-    top: 0;
-    height: 100%;
-    position: absolute;
-    z-index: 2001;
+    .fade-enter {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: all 1s;
+    }
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
 }
 </style>

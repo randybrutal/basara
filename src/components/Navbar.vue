@@ -1,22 +1,41 @@
 <template lang="pug">
     div.navbar
         vs-navbar(
-            v-model="activeItem"
+            v-model="active"
             class="nabarx"
         )
-            vs-navbar-item(index="0")
-                a(href="#/Home") Home
-            vs-navbar-item(index="1")
-                a(href="#/Gallery") Gallery
+            vs-navbar-item(
+                :active="active == 'Home'"
+                id="Home"
+            )
+                router-link.router-link-style(
+                    to="/Home"
+                ) Home
+            vs-navbar-item(
+                :active="active == 'Gallery'"
+                id="Gallery"
+            )
+                router-link.router-link-style(
+                    to="/Gallery"
+                ) Gallery
 </template>
 
 <script lang="ts">
 // @ is an alias to /src
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component
 export default class Navbar extends Vue {
-    protected activeItem = 0;
+    protected active = 'Home';
+
+    protected created() {
+        this.active = this.$route.meta.upStair;
+    }
+
+    @Watch('$route')
+    protected routeChange(val: any) {
+        this.active = val.meta.upStair;
+    }
 }
 </script>
 <style scoped lang="scss">
@@ -33,6 +52,14 @@ export default class Navbar extends Vue {
         }
         .vs-navbar-content {
             border-radius: 0;
+        }
+        .router-link-style {
+            display: block;
+            width: 80px;
+            line-height: 44px;
+        }
+        .vs-navbar__item {
+            padding: 0;
         }
     }
 </style>

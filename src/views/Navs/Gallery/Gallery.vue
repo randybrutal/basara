@@ -27,7 +27,6 @@ export default class Gallery extends Vue {
 
     protected async getAlbumGo() {
         const { data } = await getAlbum({
-            user_id: '192557662@N05',
             primary_photo_extras: 'owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_o'
         });
         if (data) {
