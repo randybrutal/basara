@@ -4,8 +4,9 @@
             autoplay
             muted
             loop
+            playsinline
         )
-            <source src="https://live.staticflickr.com/video/51085366482/e41c671299/1080p.mp4?s=eyJpIjo1MTA4NTM2NjQ4MiwiZSI6MTYxNzI0NzE1MCwicyI6IjJmY2RlOWUxODQ1ZjI4ZjkwNmQwNzExYThmY2QyNmU0NDAyYTlmMTYiLCJ2IjoxfQ" type="video/mp4">
+            <source src="https://live.staticflickr.com/video/51085366482/e41c671299/1080p.mp4?s=eyJpIjo1MTA4NTM2NjQ4MiwiZSI6MTYxNzI1MzUwMCwicyI6ImZhODE3ZmU3NGJiYThjMDJiNDFmMzRhNmUxMmQyNjRlNDRiMjlmMDAiLCJ2IjoxfQ" type="video/mp4">
 </template>
 
 <script lang="ts">
