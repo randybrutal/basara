@@ -2,24 +2,38 @@
     .app-wrapper
         Navbar
         transition(name="fade")
+            HeaderBar(v-if="routeName === 'Home'")
+        transition(name="fade")
             router-view
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
+import HeaderBar from '@/components/HeaderBar.vue';
 
 @Component({
     components: {
-        Navbar
+        Navbar,
+        HeaderBar
         // Sidebar,
         // AppMain
     }
 })
 export default class Layout extends Vue {
     protected trans = false;
+
+    protected routeName = '';
+
+    protected created() {
+        if (this.$route.name) {
+            this.routeName = this.$route.name;
+        }
+    }
+
     @Watch('$route')
-    protected routeChange() {
+    protected routeChange(val: any) {
+        this.routeName = val.name;
         this.trans = !this.trans;
     }
 }

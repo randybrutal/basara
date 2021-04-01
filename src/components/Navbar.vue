@@ -40,6 +40,7 @@ export default class Navbar extends Vue {
 </script>
 <style scoped lang="scss">
     .navbar /deep/{
+        position: relative;
         height: 44px;
         box-shadow: -1px 1px 10px 1px #242424;
         -webkit-box-shadow: -1px 1px 10px 1px #242424;
