@@ -4,6 +4,7 @@
             type="2"
             v-for="item in rawData.photoset"
             :key="item.primary"
+            @click="goToAlbum(item.id)"
         )
             template(#title)
                 h3 {{ item.title._content }}
@@ -32,6 +33,15 @@ export default class Gallery extends Vue {
         if (data) {
             this.rawData = data.photosets;
         }
+    }
+
+    protected goToAlbum(id: string) {
+        this.$router.push({
+            name: 'Album',
+            query: {
+                id
+            }
+        });
     }
 }
 </script>

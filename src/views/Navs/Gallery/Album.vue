@@ -1,8 +1,6 @@
 <template lang="pug">
     div.album
-        CascadeGallery(
-            pageWidth="80%"
-            :barNumber="4"
+        Justified(
             :imgData="rawData"
         )
         //- div.card-wrap.clearfix
@@ -22,11 +20,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { getAlbumPhotoList } from '@/api';
-import CascadeGallery from '@/components/CascadeGallery.vue';
+import Justified from '@/components/Justified.vue';
 
 @Component({
     components: {
-        CascadeGallery
+        Justified
     }
 })
 export default class Album extends Vue {
@@ -46,7 +44,9 @@ export default class Album extends Vue {
             data.photoset.photo.forEach((item: any) => {
                 this.rawData.push({
                     id: item.id,
-                    src: item.url_o
+                    src: item.url_o,
+                    width: item.width_s,
+                    height: item.height_s
                 });
             });
             // this.rawData = data.photoset;

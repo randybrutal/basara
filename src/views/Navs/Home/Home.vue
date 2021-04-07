@@ -1,21 +1,17 @@
 <template lang="pug">
     div.home
-        CascadeGallery(
-            pageWidth="80%"
-            :barNumber="4"
-            :imgData="imgData"
-        )
+        Justified(:imgData="imgData")
 </template>
 
 <script lang="ts">
 // @ is an alias to /src
 import { Component, Vue } from 'vue-property-decorator';
 import { getAllPhoto } from '@/api';
-import CascadeGallery from '@/components/CascadeGallery.vue';
+import Justified from '@/components/Justified.vue';
 
 @Component({
     components: {
-        CascadeGallery
+        Justified
     }
 })
 export default class Home extends Vue {
@@ -38,14 +34,16 @@ export default class Home extends Vue {
             format: 'json',
             nojsoncallback: 1,
             media: 'photos',
-            per_page: 30
+            per_page: 100
         });
         if (data) {
             this.allData = data;
             data.photos.photo.forEach((item: any) => {
                 this.imgData.push({
                     id: item.id,
-                    src: item.url_o
+                    src: item.url_o,
+                    width: item.width_s,
+                    height: item.height_s
                 });
             });
             // loading.close();

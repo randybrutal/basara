@@ -45,7 +45,7 @@ export default class Layout extends Vue {
     position: relative;
     height: 100%;
     width: 100%;
-    min-width: 1100px;
+    // min-width: 1100px;
     &.mobile.openSidebar {
         position: fixed;
         top: 0;

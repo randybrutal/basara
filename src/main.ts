@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuesax from 'vuesax';
+import { VueMasonryPlugin } from 'vue-masonry';
+import VueJustifiedLayout from 'vue-justified-layout';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -9,6 +11,10 @@ import 'vuesax/dist/vuesax.css';
 Vue.use(Vuesax, {
     // options here
 });
+
+Vue.use(VueMasonryPlugin);
+
+Vue.use(VueJustifiedLayout);
 
 Vue.config.productionTip = false;
 

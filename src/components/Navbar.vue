@@ -1,9 +1,21 @@
 <template lang="pug">
     div.navbar
+        div.logo
+            img(
+                src="../assets/logo.png"
+                alt=""
+                width="100"
+            )
         vs-navbar(
             v-model="active"
             class="nabarx"
         )
+            //- template(#left)
+            //-     img(
+            //-         src="../assets/logo.png"
+            //-         alt=""
+            //-         width="100"
+            //-     )
             vs-navbar-item(
                 :active="active == 'Home'"
                 id="Home"
@@ -42,17 +54,23 @@ export default class Navbar extends Vue {
     .navbar /deep/{
         position: relative;
         height: 44px;
-        box-shadow: -1px 1px 10px 1px #242424;
-        -webkit-box-shadow: -1px 1px 10px 1px #242424;
-        -moz-box-shadow: -1px 1px 10px 1px #242424;
-        -o-box-shadow: -1px 1px 10px 1px #242424;
+        // box-shadow: -1px 1px 10px 1px #242424;
+        // -webkit-box-shadow: -1px 1px 10px 1px #242424;
+        // -moz-box-shadow: -1px 1px 10px 1px #242424;
+        // -o-box-shadow: -1px 1px 10px 1px #242424;
+        .logo {
+            float: left;
+        }
         .vs-navbar{
+            margin-top: 48px;
+            color: #FFF;
             .vs-con-items {
                 margin: 0 auto;
             }
         }
         .vs-navbar-content {
             border-radius: 0;
+            background-color: transparent;
         }
         .router-link-style {
             display: block;
