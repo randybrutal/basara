@@ -1,12 +1,5 @@
 <template lang="pug">
     div.headerbar
-        video.video-style(
-            autoplay
-            muted
-            loop
-            playsinline
-        )
-            <source src="https://live.staticflickr.com/video/51085366482/e41c671299/1080p.mp4?s=eyJpIjo1MTA4NTM2NjQ4MiwiZSI6MTYxNzI1MzUwMCwicyI6ImZhODE3ZmU3NGJiYThjMDJiNDFmMzRhNmUxMmQyNjRlNDRiMjlmMDAiLCJ2IjoxfQ" type="video/mp4">
 </template>
 
 <script lang="ts">

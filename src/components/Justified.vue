@@ -8,8 +8,22 @@
             img.hover-link(
                 :src="item.src"
                 width="100%"
-                @click="getAlbumId(item.id)"
+                @click="imageClick(item.id, item.src)"
             )
+        vs-dialog(
+            blur
+            square
+            not-close
+            auto-width
+            not-padding
+            v-model="activePop"
+        )
+            div.con-image
+                img(
+                    :src="imgSrc"
+                    alt=""
+                    width="100%"
+                )
 </template>
 
 <script lang="ts">
@@ -20,18 +34,16 @@ import { getAllContext } from '@/api/index';
 @Component
 export default class Justified extends Vue {
     @Prop({
-        type: String,
-        default: '80%'
+        type: Boolean,
+        default: false
     })
-    protected readonly pageWidth!: any;
+    protected readonly noLink!: boolean;
 
     @Prop({
-        type: Number,
-        default: 4,
-        validator: value => value > 1 && value < 11
-
+        type: Boolean,
+        default: false
     })
-    protected readonly barNumber!: any;
+    protected readonly isPopUp!: boolean;
 
     @Prop({
         type: Array,
@@ -39,15 +51,17 @@ export default class Justified extends Vue {
     })
     protected readonly imgData!: any; // 格式[{id:0, src: "url"}]
 
-    protected barWidth = '0';
-    protected ownBarNumber = 0; // 计算后得到的列的数量
+    protected activePop = false;
 
-    protected mounted() {
-        this.setBarWidth();
-    }
+    protected imgSrc = '';
 
-    protected setBarWidth() {
-        this.barWidth = `${100 / this.barNumber}%`;
+    protected imageClick(id: string, src: string) {
+        if (this.noLink) {
+            this.activePop = !this.activePop;
+            this.imgSrc = src;
+            return;
+        }
+        this.getAlbumId(id);
     }
 
     protected async getAlbumId(id: string) {
@@ -62,14 +76,6 @@ export default class Justified extends Vue {
                     this.goToAlbum(data.set[0].id);
                 });
             }
-            // this.allData = data;
-            // data.photos.photo.forEach((item: any) => {
-            //     this.imgData.push({
-            //         id: item.id,
-            //         src: item.url_o
-            //     });
-            // });
-            // loading.close();
         }
     }
 
@@ -83,26 +89,20 @@ export default class Justified extends Vue {
     }
 }
 </script>
-<style scoped lang="scss">
-    // * {
-    //     border: 0;
-    //     margin: 0;
-    //     padding: 0;
-    //     box-sizing: border-box;
-    // }
-    .justified-frame {
+<style scoped lang="scss" scoped>
+    .justified-frame{
         width: 80%;
         margin: 0 auto;
     }
     .hover-link {
-        // display: inline-block;
-        // width: 200px;
-        // margin: 0 2px;
-        // width: 100%;
-        // margin: -3px 0px;
         &:hover {
             opacity: 0.6;
             cursor: pointer;
+        }
+    }
+    .vs-dialog-content /deep/{
+        .vs-dialog {
+            background: none;
         }
     }
 </style>

@@ -2,6 +2,7 @@
     div.album
         Justified(
             :imgData="rawData"
+            :noLink="true"
         )
         //- div.card-wrap.clearfix
         //-     vs-card(
@@ -38,7 +39,8 @@ export default class Album extends Vue {
         const route = this.$route.query;
         const { data } = await getAlbumPhotoList({
             photoset_id: route.id,
-            extras: 'owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_o'
+            extras: 'owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_o',
+            media: 'photo'
         });
         if (data) {
             data.photoset.photo.forEach((item: any) => {

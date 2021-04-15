@@ -50,7 +50,7 @@ export const getAllContext = (paramCell: any) => requestFlickr({
 export const getStream = (paramCell: any) => requestFlickr({
     method: 'get',
     params: {
-        method: 'flickr.photos.getInfo',
+        method: 'flickr.video.getStreamInfo',
         ...param,
         ...paramCell
     }

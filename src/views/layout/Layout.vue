@@ -1,9 +1,10 @@
 <template lang="pug">
     .app-wrapper
         Navbar
-        transition(name="fade")
-            HeaderBar(v-if="routeName === 'Home'")
-        transition(name="fade")
+        transition(
+            name="fade-transform"
+            mode="out-in"
+        )
             router-view
 </template>
 
@@ -50,17 +51,32 @@ export default class Layout extends Vue {
         position: fixed;
         top: 0;
     }
-    .fade-enter {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
+    //globl transition css
+    /*fade*/
     .fade-enter-active,
     .fade-leave-active {
-        transition: all 1s;
+        transition: opacity 0.28s;
     }
-    .fade-leave-to {
+
+    .fade-enter,
+    .fade-leave-active {
         opacity: 0;
-        transform: translateX(-100px);
+    }
+
+    /*fade-transform to right*/
+    .fade-transform-leave-active,
+    .fade-transform-enter-active {
+        transition: all .5s;
+    }
+
+    .fade-transform-enter {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    .fade-transform-leave-to {
+        opacity: 0;
+        transform: translateX(30px);
     }
 }
 </style>

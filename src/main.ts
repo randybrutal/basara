@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuesax from 'vuesax';
 import { VueMasonryPlugin } from 'vue-masonry';
 import VueJustifiedLayout from 'vue-justified-layout';
+import '@/Icons';
 import App from './App.vue';
 import router from './router';
 import store from './store';
