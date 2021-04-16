@@ -6,17 +6,20 @@
             mode="out-in"
         )
             router-view
+        Footer
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import Navbar from '@/components/Navbar.vue';
 import HeaderBar from '@/components/HeaderBar.vue';
+import Footer from '@/components/Footer.vue';
 
 @Component({
     components: {
         Navbar,
-        HeaderBar
+        HeaderBar,
+        Footer
         // Sidebar,
         // AppMain
     }
@@ -50,33 +53,6 @@ export default class Layout extends Vue {
     &.mobile.openSidebar {
         position: fixed;
         top: 0;
-    }
-    //globl transition css
-    /*fade*/
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 0.28s;
-    }
-
-    .fade-enter,
-    .fade-leave-active {
-        opacity: 0;
-    }
-
-    /*fade-transform to right*/
-    .fade-transform-leave-active,
-    .fade-transform-enter-active {
-        transition: all .5s;
-    }
-
-    .fade-transform-enter {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-
-    .fade-transform-leave-to {
-        opacity: 0;
-        transform: translateX(30px);
     }
 }
 </style>

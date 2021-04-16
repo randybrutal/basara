@@ -1,9 +1,20 @@
 <template lang="pug">
     div.album
-        Justified(
-            :imgData="rawData"
-            :noLink="true"
+        transition(
+            name="fade-transform"
+            mode="out-in"
         )
+            Justified(
+                v-if="isShow"
+                :imgData="rawData"
+                :noLink="true"
+            )
+        div.center.con-pagination(v-if="pageLength !== 1")
+            vs-pagination(
+                color="dark"
+                v-model="currentPage"
+                :length="pageLength"
+            )
         //- div.card-wrap.clearfix
         //-     vs-card(
         //-         type="2"
@@ -19,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
 import { getAlbumPhotoList } from '@/api';
 import Justified from '@/components/Justified.vue';
 
@@ -31,18 +42,32 @@ import Justified from '@/components/Justified.vue';
 export default class Album extends Vue {
     protected rawData: any = [];
 
+    protected totalPage = 1;
+
+    protected currentPage = 1;
+
+    protected perPage = 10;
+
+    protected pageLength = 1;
+
+    protected isShow = false;
+
     protected created() {
-        this.getAlbumPhotoListGo();
+        this.getAlbumPhotoListGo(1);
     }
 
-    protected async getAlbumPhotoListGo() {
+    protected async getAlbumPhotoListGo(page: number) {
+        this.isShow = false;
         const route = this.$route.query;
         const { data } = await getAlbumPhotoList({
             photoset_id: route.id,
             extras: 'owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_o',
-            media: 'photo'
+            media: 'photo',
+            page,
+            per_page: this.perPage
         });
         if (data) {
+            this.rawData = [];
             data.photoset.photo.forEach((item: any) => {
                 this.rawData.push({
                     id: item.id,
@@ -51,8 +76,15 @@ export default class Album extends Vue {
                     height: item.height_s
                 });
             });
-            // this.rawData = data.photoset;
+            this.totalPage = data.photoset.total;
+            this.pageLength = Math.ceil(this.totalPage / this.perPage);
+            this.isShow = true;
         }
+    }
+
+    @Watch('currentPage')
+    protected pageChange(val: number) {
+        this.getAlbumPhotoListGo(val);
     }
 }
 </script>
@@ -71,5 +103,12 @@ export default class Album extends Vue {
                     height: 20%;
                 }
             }
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
     }
 </style>
