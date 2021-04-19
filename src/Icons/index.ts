@@ -31,7 +31,10 @@ import 'vue-awesome/icons/donate';
 import 'vue-awesome/icons/sign-out-alt';
 import 'vue-awesome/icons/user-cog';
 import 'vue-awesome/icons/qrcode';
-import 'vue-awesome/icons/fingerprint';
+import 'vue-awesome/icons/brands/facebook';
+import 'vue-awesome/icons/brands/instagram';
+import 'vue-awesome/icons/brands/behance-square';
+import 'vue-awesome/icons/brands/vimeo';
 
 // 註冊全域icon 組件
 Vue.component('v-icon', Icon);
