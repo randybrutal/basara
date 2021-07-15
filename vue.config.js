@@ -20,6 +20,21 @@ module.exports = {
             }
         }
     },
+    pwa: {
+        name: 'basara',
+        themeColor: '#4DBA87',
+        msTileColor: '#000000',
+        appleMobileWebAppCapable: 'yes',
+        appleMobileWebAppStatusBarStyle: 'black',
+
+        // configure the workbox plugin
+        workboxPluginMode: 'InjectManifest',
+        workboxOptions: {
+        // swSrc is required in InjectManifest mode.
+            swSrc: 'dev/sw.js'
+        // ...other Workbox options...
+        }
+    },
     chainWebpack: config => {
         config.plugin('provide').use(webpack.ProvidePlugin, [
             {
@@ -27,5 +42,6 @@ module.exports = {
                 axios: 'axios'
             }
         ]);
+        config.plugin('workbox');
     }
 };

@@ -8,6 +8,7 @@ import router from './router';
 import store from './store';
 
 import 'vuesax/dist/vuesax.css';
+import './registerServiceWorker';
 // Vuesax styles
 Vue.use(Vuesax, {
     // options here
