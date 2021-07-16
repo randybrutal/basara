@@ -1,6 +1,5 @@
 <template lang="pug">
     div.home
-        h1 Test Test
         video.video-style(
             v-if="streamData"
             autoplay
