@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.8ee41fc7e7c04270eaff0c7028388085.js"
+  "/precache-manifest.80d9111601baf10cbb7fcfc104e79b96.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "basara"});

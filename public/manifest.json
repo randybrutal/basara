@@ -3,12 +3,12 @@
     "name": "basara",
     "icons": [
         {
-            "src": "./img/icons/logo.png",
+            "src": "./img/icons/logo_192x192.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "./img/icons/logo.png",
+            "src": "./img/icons/logo_192x192.png",
             "type": "image/png",
             "sizes": "512x512"
         }
